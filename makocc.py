@@ -2,6 +2,9 @@
 
 import argparse
 from mako.template import Template
+import traceback
+import os
+import sys
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
@@ -13,4 +16,9 @@ if __name__=="__main__":
     if args.o is None:
         print(mytemplate.render())
     else:
-        args.o.write(mytemplate.render())
+        try:
+            args.o.write(mytemplate.render())
+        except Exception as e:
+            traceback.print_exc(file=sys.stdout)
+            args.o.close()
+            os.remove(args.o.name)

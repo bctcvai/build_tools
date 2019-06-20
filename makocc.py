@@ -22,3 +22,6 @@ if __name__=="__main__":
             traceback.print_exc(file=sys.stdout)
             args.o.close()
             os.remove(args.o.name)
+            sys.exit(255)
+
+    sys.exit(0)
